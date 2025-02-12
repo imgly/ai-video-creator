@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { generateVideoScript } from "../utils/api";
 import { createVideo } from "../utils/videoProcessor";
-import EditorModal from "../components/EditorModal";
+import EditorModal from "../components/EditorModalWithNoSSR";
 import useEngine from "@/utils/useEngine";
 
 interface VideoUrls {
