@@ -93,20 +93,19 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <form onSubmit={handleSubmit} className="w-full max-w-md mb-8">
+      <form onSubmit={handleSubmit} className="flex gap-2 items-center w-full max-w-[450px]">
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="w-full p-2 border rounded text-gray-900"
-          placeholder="Enter your topic..."
+          placeholder="Enter your video topic"
+          className="flex-1 p-2 border rounded text-[hsl(208,12%,28%)] placeholder:text-[hsl(208,12%,60%)] border-[hsl(208,12%,80%)]"
         />
         <button
-          type="submit"
           disabled={isLoading}
-          className="w-full mt-4 p-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
+          className="p-2 px-4 w-[160px] bg-[hsl(208,12%,28%)] hover:bg-[hsl(208,12%,22%)] text-[hsl(200,11%,95%)] disabled:text-[hsl(208,12%,50%)] rounded disabled:bg-gray-300 transition-colors text-center"
         >
-          {isLoading ? 'Generating...' : 'Generate Video Script'}
+          {isLoading ? 'Generating...' : 'Generate Video'}
         </button>
       </form>
       {/* Add container for Creative Engine */}
@@ -122,7 +121,7 @@ export default function Home() {
         <p className="text-red-500">Failed to initialize Creative Engine</p>
       )}
       {videoUrls && (
-        <div className="w-full max-w-md mt-4">
+        <div className="w-300 max-w-md mt-4">
           <video 
             src={videoUrls.videoUrl}
             controls
@@ -130,7 +129,7 @@ export default function Home() {
           />
           <button
             onClick={() => setIsEditorOpen(true)}
-            className="w-full mt-2 p-2 bg-green-500 text-white rounded hover:bg-green-600"
+            className="w-full mt-2 p-2 bg-[hsl(221,100%,80%)] text-[hsl(208,14%,18%)] rounded hover:bg-[hsl(221,100%,85%)]"
           >
             Open in Editor
           </button>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import CreativeEditorSDK from '@cesdk/cesdk-js'
 
 interface EditorModalProps {
@@ -9,6 +9,23 @@ interface EditorModalProps {
 
 export default function EditorModal({ isOpen, onClose, sceneData }: EditorModalProps) {
   const editorRef = useRef<any>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        onClose()
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen, onClose])
 
   useEffect(() => {
     if (isOpen && !editorRef.current) {
@@ -16,7 +33,7 @@ export default function EditorModal({ isOpen, onClose, sceneData }: EditorModalP
         const config = {
           license: 'A-O53TWXK5bfyconUx7e53S5YU7DzjuGpMAH5vvKjLd0zBa6IhsoF7zChy1uCVbj',
           userId: 'guides-user',
-          theme: 'light',
+          theme: 'dark',
           baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.44.0/assets',
           role: 'Creator',
           ui: {
@@ -102,13 +119,13 @@ export default function EditorModal({ isOpen, onClose, sceneData }: EditorModalP
     <div 
       className={`
         fixed inset-0 z-50 flex items-center justify-center
-        bg-black/50 backdrop-blur-xl
+        hsl(207 18% 10%) backdrop-blur-xl
         transition-all duration-300 ease-in-out
         ${isOpen ? 'opacity-100 backdrop-blur-xl' : 'opacity-0 backdrop-blur-none pointer-events-none'}
       `}
     >
-      <div className="bg-white w-[120vw] max-w-[800px] max-h-[1200px]">
-        <div id="editor_container" className="rounded-lg w-full h-[calc(90vh-20px)]" />
+      <div className="bg-white w-[120vw] max-w-[800px] max-h-[1200px] rounded-lg overflow-hidden">
+        <div id="editor_container" className=" w-full h-[calc(90vh-20px)]" />
       </div>
     </div>
   )
