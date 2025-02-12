@@ -60,7 +60,7 @@ export async function generateAudio(text: string, style: string): Promise<{ audi
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'xi-api-key': 'sk_f32b2bf2fd255c2c86636359790d4454416df1b2a169c906',
+        'xi-api-key': process.env.NEXT_PUBLIC_ELEVEN_LABS_KEY
       },
       body: JSON.stringify({
         text: text,

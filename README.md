@@ -31,6 +31,7 @@ npm install
 ```sh
 NEXT_PUBLIC_ANTHROPIC_API_KEY=your_claude_api_key
 NEXT_PUBLIC_FAL_API_KEY=your_fal_ai_key
+NEXT_PUBLIC_ELEVEN_LABS_KEY=your_eleven_labs_key
 ```
 4. Start the development server:
 ```sh
