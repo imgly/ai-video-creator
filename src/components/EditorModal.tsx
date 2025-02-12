@@ -124,8 +124,8 @@ export default function EditorModal({ isOpen, onClose, sceneData }: EditorModalP
         ${isOpen ? 'opacity-100 backdrop-blur-xl' : 'opacity-0 backdrop-blur-none pointer-events-none'}
       `}
     >
-      <div className="bg-white w-[120vw] max-w-[800px] max-h-[1200px] rounded-lg overflow-hidden">
-        <div id="editor_container" className=" w-full h-[calc(90vh-20px)]" />
+      <div className="bg-white w-[120vw] max-w-[800px] h-[80vh] max-h-[1200px] rounded-lg overflow-hidden">
+        <div id="editor_container" className=" w-full h-[100%]" />
       </div>
     </div>
   )
