@@ -40,7 +40,6 @@ interface VideoMetadata {
 
 export async function processVideoScript(xmlContent: string): Promise<VideoMetadata> {
   const cleanedXmlString = xmlContent.trim().replace(/^```xml\s*|```$/g, '');
-  console.log(cleanedXmlString);
   return new Promise((resolve, reject) => {
     parseString(cleanedXmlString, async (err, result: VideoStructure) => {
       if (err) {
@@ -49,18 +48,15 @@ export async function processVideoScript(xmlContent: string): Promise<VideoMetad
       }
 
       try {
-        const blocks: VideoBlock[] = [];
+        const blocks: VideoBlock[] = []; // Store all the generated assets + time codes in this array
         const groups = result.video.group;
         let accumulatedDuration = 0; // Track total duration so far
 
-        for (const group of groups) {
-          for (const element of group.element) {
+        for (const group of groups) {  // Process each group; intro, content, outro
+          for (const element of group.element) {  // Process each element; text and image
             const textContent = element.text?.[0]?._ || '';
             const imagePrompt = element.image?.[0];
-            // Fix style extraction
             const style = element.text?.[0]?.$.style || '0';
-            
-            console.log('Extracted style:', style); // Debug log
 
             const { audioUrl, wordTimestamps } = await generateAudio(textContent, style);
             
@@ -83,7 +79,6 @@ export async function processVideoScript(xmlContent: string): Promise<VideoMetad
                 start: wt.start + blockStartTime // Offset word timestamps
               }))
             });
-
             accumulatedDuration += blockDuration;
           }
         }

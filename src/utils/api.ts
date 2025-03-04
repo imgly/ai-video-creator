@@ -127,8 +127,6 @@ function convertToWordTimestamps(text: string, alignment: {
     wordTimestamps.push({ word, start: wordStart, duration: wordEnd - wordStart });
     charIndex++; // Skip the space
   });
-
-
   return wordTimestamps;
 }
   

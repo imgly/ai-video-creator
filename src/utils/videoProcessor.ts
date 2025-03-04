@@ -27,7 +27,6 @@ export async function createVideo(engine: any, videoData: VideoMetadata) {
   engine.block.setAlwaysOnBottom(videotrack, true);
   engine.block.setPageDurationSource(page, videotrack);
 
-
   const audiotrack = engine.block.create('track');
   const texttrack = engine.block.create('track');
   
@@ -35,7 +34,6 @@ export async function createVideo(engine: any, videoData: VideoMetadata) {
   engine.block.appendChild(page, texttrack);
 
   engine.block.bringToFront(texttrack);
-
 
   const videoWidth = 1080;
   const videoHeight = 1920;

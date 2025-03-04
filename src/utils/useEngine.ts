@@ -25,7 +25,7 @@ function useEngine(): [
 
         const config = {
           license:
-            "A-O53TWXK5bfyconUx7e53S5YU7DzjuGpMAH5vvKjLd0zBa6IhsoF7zChy1uCVbj",
+            "A-O53TWXK5bfyconUx7e53S5YU7DzjuGpMAH5vvKjLd0zBa6IhsoF7zChy1uCVbj", // retrieve your own key from https://account.img.ly
           userId: "guides-user",
           baseURL:
             "https://cdn.img.ly/packages/imgly/cesdk-engine/1.44.0/assets",
