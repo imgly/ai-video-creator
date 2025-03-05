@@ -31,7 +31,7 @@ export default function EditorModal({ isOpen, onClose, sceneData }: EditorModalP
     if (isOpen && !editorRef.current) {
       const initEditor = async () => {
         const config = {
-          license: 'A-O53TWXK5bfyconUx7e53S5YU7DzjuGpMAH5vvKjLd0zBa6IhsoF7zChy1uCVbj',
+          license: process.env.NEXT_PUBLIC_IMG_LY_KEY,
           userId: 'guides-user',
           theme: 'dark',
           baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.44.0/assets',
