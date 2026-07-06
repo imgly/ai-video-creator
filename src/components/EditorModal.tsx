@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import CreativeEditorSDK from '@cesdk/cesdk-js'
+import CreativeEditorSDK, { type Configuration, type UserInterfaceElements } from '@cesdk/cesdk-js'
 
 interface EditorModalProps {
   isOpen: boolean
@@ -30,7 +30,7 @@ export default function EditorModal({ isOpen, onClose, sceneData }: EditorModalP
   useEffect(() => {
     if (isOpen && !editorRef.current) {
       const initEditor = async () => {
-        const config = {
+        const config: Configuration = {
           license: process.env.NEXT_PUBLIC_IMG_LY_KEY,
           userId: 'guides-user',
           theme: 'dark',
@@ -42,7 +42,7 @@ export default function EditorModal({ isOpen, onClose, sceneData }: EditorModalP
               panels: {
               },
               navigation: {
-                position: 'top',
+                position: 'top' as UserInterfaceElements.NavigationPosition,
                 action: {
                   save: true,
                   load: true,
