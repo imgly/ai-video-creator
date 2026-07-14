@@ -24,7 +24,7 @@ interface VideoStructure {
   };
 }
 
-interface VideoBlock {
+export interface VideoBlock {
   text: string;
   imageUrl: string | null;
   audioUrl: string | null;
@@ -33,7 +33,7 @@ interface VideoBlock {
   wordTimestamps: Array<{ word: string, start: number, duration: number }>;
 }
 
-interface VideoMetadata {
+export interface VideoMetadata {
   totalDuration: number;
   blocks: VideoBlock[];
 }

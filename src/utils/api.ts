@@ -17,13 +17,17 @@ export async function generateVideoScript(topic: string) {
   try {
     const prompt = createVideoScriptPrompt(topic);
     const response = await anthropic.messages.create({
-      model: 'claude-3-sonnet-20240229',
+      model: 'claude-opus-4-8',
       messages: [{ role: "user", content: prompt }],
       max_tokens: 1024,
     });
     
     // Process the XML response and generate images
-    const processedContent = await processVideoScript(response.content[0].text);
+    const block = response.content[0];
+    if (block.type !== 'text') {
+      throw new Error(`Unexpected response block type: ${block.type}`);
+    }
+    const processedContent = await processVideoScript(block.text);
     return processedContent;
   } catch (error) {
     console.error('Error processing video script:', error);
@@ -60,7 +64,7 @@ export async function generateAudio(text: string, style: string): Promise<{ audi
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'xi-api-key': process.env.NEXT_PUBLIC_ELEVEN_LABS_KEY
+        'xi-api-key': process.env.NEXT_PUBLIC_ELEVEN_LABS_KEY ?? ''
       },
       body: JSON.stringify({
         text: text,
